@@ -107,24 +107,7 @@ class conexao {
         $conn = null;
 
     }
-    public function ler(){
-        $sql = "SELECT * FROM candidatos";
-        $result = $conn->query($sql);
-        
-        if ($result->num_rows > 0) {
-        echo "<table><tr><th>id</th><th>nome</th></tr>";
-        
-        while($row = $result->fetch_assoc()) {
-        echo "<tr><td>".$row["id"]."</td><td>".$row["nome"]."</td><td> ".$row["rg"]." </td><td>".$row["telefone"]."</td><td> ".$row["escola"]."</td></tr>";
-        }
-        echo "</table>";
-        } else {
-        echo "0 results";
-        }
-        $conn->close();
-    
 
-   
-    }
 }
+
 ?>
