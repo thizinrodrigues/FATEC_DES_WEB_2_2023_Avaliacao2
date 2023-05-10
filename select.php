@@ -8,24 +8,34 @@ class conselect {
     private $conn;
     public function __construct() { 
 
-$conn = new mysqli($servername, $username, $password, $dbname);
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
+        $this->conn = new mysqli($this->servername, $this->username, $this->password, $this->dbname);
+    // Check connection
+    if ($this->conn->connect_error) {
+    die("Connection failed: " . $this->conn->connect_error);
+    }
 }
+    public function ler(){
+        $sql = "SELECT * FROM candidatos";
+    $result = $this->conn->query($sql);
 
-$sql = "SELECT * FROM candidatos";
-$result = $conn->query($sql);
-
-if ($result->num_rows > 0) {
-    echo "<table><tr><th>id</th><th>nome</th></tr>";
+    if ($result->num_rows > 0) {
+    echo "<table><tr><th>id</th> <th>nome</th> <th>rg</th> <th>telefone</th> <th>escola</th></tr>";
     // output data of each row
     while($row = $result->fetch_assoc()) {
-        echo "<tr><td>".$row["id"]."</td><td>".$row["nome"]." ".$row["rg"]."".$row["telefone"]."".$row["escola"]."</td></tr>";
+        echo "<tr><td>".$row["id"]."</td><td>".$row["nome"]." </td> <td>".$row["rg"]."</td> <td>".$row["telefone"]."</td> <td>".$row["escola"]."</td></tr>";
     }
     echo "</table>";
 } else {
     echo "0 results";
 }
-$conn->close();
+    }
+
+    }
+    
+        
+
+ 
+$varriavel = new conselect();
+$varriavel->ler();
+
 ?>
